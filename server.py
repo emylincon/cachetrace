@@ -12,11 +12,6 @@ def home():
     return render_template('home.html', codes=session.keys())
 
 
-def format_input():
-    # all numbers in csize must be integer
-    pass
-
-
 @app.route('/api', methods=['POST'])
 def compare_api():
     try:
@@ -34,6 +29,11 @@ def compare_api():
 @app.route('/about')
 def about():
     return render_template('about.html', codes=session.keys())
+
+
+@app.route('/app-api')
+def app_api():
+    return render_template('api.html', codes=session.keys())
 
 
 @app.route('/compare')
