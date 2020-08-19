@@ -26,11 +26,8 @@ def compare_api():
         f = open(f'static/{name}', 'r')
         data = json.loads(f.read())
         f.close()
-        print(type(data))
-        print('answer: ', data)
         return jsonify({'result': data}), 201
     except Exception as e:
-        print(e)
         return jsonify({'error': f'{e}'}), 404
 
 
