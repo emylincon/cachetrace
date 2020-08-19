@@ -1,5 +1,6 @@
-from flask import Flask, render_template, session, url_for, request, send_file
+from flask import Flask, render_template, session, url_for, request, jsonify
 from worker import plot_comparison
+import json
 import ast
 
 app = Flask(__name__)
@@ -16,12 +17,26 @@ def format_input():
     pass
 
 
-@app.route('/download/')
-def download():
+@app.route('/api', methods=['POST'])
+def compare_api():
     try:
-        return send_file('/var/www/PythonProgramming/PythonProgramming/static/images/python.jpg', attachment_filename='python.jpg')
+        json_req = request.get_json()
+        result, name = plot_comparison(no_of_requests=json_req['no_of_requests'], no_of_contents=json_req['no_of_contents'],
+                                       cache_sizes=json_req['cache_sizes'], zipf=json_req['zipf'])
+        f = open(f'static/{name}', 'r')
+        data = json.loads(f.read())
+        f.close()
+        print(type(data))
+        print('answer: ', data)
+        return jsonify({'result': data}), 201
     except Exception as e:
-        return str(e)
+        print(e)
+        return jsonify({'error': f'{e}'}), 404
+
+
+@app.route('/about')
+def about():
+    return render_template('about.html', codes=session.keys())
 
 
 @app.route('/compare')
