@@ -333,6 +333,7 @@ def plot_comparison(no_of_requests, no_of_contents, cache_sizes, zipf):
         # plot_me(data, ax, color, cache_size, l_lab)
     name = f'{int(time.time())}'
     save_data(name, js_data)
+    js_data.append({'requests': eval(str(ref))})
     save_json(name, js_data)
     clean_up()
     # plt.savefig(rf'static/{filename}')
