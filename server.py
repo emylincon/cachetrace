@@ -39,7 +39,7 @@ def app_api():
 @app.route('/compare')
 def compare():
     req_var = dict(request.args)   # {'zipf': '1.1', 'noc': '20', 'nor': '50', 'csize': '[3,5]'}
-    print(ast.literal_eval(req_var['csize']), req_var)
+    # print(ast.literal_eval(req_var['csize']), req_var)
     result, name = plot_comparison(no_of_requests=int(req_var['nor']), no_of_contents=int(req_var['noc']),
                                    cache_sizes=ast.literal_eval(req_var['csize']), zipf=float(req_var['zipf']))
     return render_template('compare.html', code=result, name=name)
