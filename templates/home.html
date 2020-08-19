@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <title>CacheTest</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class='main'>
+            <div class='logo'>
+                <img src="{{ url_for('static', filename='logo.png') }}">
+            </div>
+            <ul>
+                <li class="active"><a href='#'>Home</a></li>
+                <li><a href='#'>Services</a></li>
+                <li><a href='#'>Gallery</a></li>
+                <li><a href='#'>About</a></li>
+                <li><a href='#'>Contact</a></li>
+            </ul>
+        </div>
+
+        <div class='wrapper'>
+            <form action='/compare' method="GET">
+                <div class="input-fields">
+                    <input type='text' class="input" name='zipf' value='' placeholder="Zipf e.g 1.1" required>
+                    <input type='text' class="input" name='noc' value='' placeholder="No of Content e.g 20" required>
+                    <input type='text' class="input" name='nor' value='' placeholder="No of Requests e.g 100" required>
+                    <input type='text' class="input" name='csize' value='' placeholder="Cache Sizes e.g [5,7]" required>
+                </div>
+                <input class="btn" type='submit' onclick="loading()" value='RUN'>
+            </form>
+        </div>
+        <div class='display'>
+          <img name='slider' class='slide-node' width='100%' height='100%'>
+        </div>
+    </header>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

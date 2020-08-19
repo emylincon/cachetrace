@@ -1,0 +1,345 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Century Gothic;
+}
+
+header{
+    background-image:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(cloud.jpg);
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+ul{
+    float: right;
+    list-style-type: none;
+    margin-top: 25px;
+}
+
+ul li{
+    display: inline-block;
+}
+
+ul li a{
+    text-decoration: none;
+    color: #ffF;
+    padding: 5px 20px;
+    border: 1px solid transparent;
+    transition: 0.6s ease;
+
+}
+
+ul li a:hover{
+    background-color: #ffF;
+    color: #000;
+}
+
+ul li.active a{
+    background-color: #ffF;
+    color: #000;
+}
+
+.logo img{
+    float: left;
+    width: 200px;
+    height: auto;
+    margin-top: 10px;
+}
+
+.main{
+    max-width: 1200px;
+    margin: auto;
+}
+
+.wrapper{
+    height: 300px;
+    width: 500px;
+    border: 1px solid #fff;
+    position: absolute;
+    background: rgba(0,0,0,0.8);
+    left: 10%;
+    top: 15%;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    display: flex;
+}
+
+form{
+    width: 90%;
+}
+
+.input-fields{
+    display: flex;
+    flex-direction: column;
+    margin-right: 4%;
+    width: 100%;
+  }
+
+.input-fields .input{
+    margin: 10px 0;
+    background: transparent;
+    border: 0px;
+    border-bottom: 2px solid #c5ecfd;
+    padding: 10px;
+    color: #c5ecfd;
+    width: 100%;
+}
+
+::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: #c5ecfd;
+  }
+  ::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #c5ecfd;
+  }
+  :-ms-input-placeholder {
+    /* IE 10+ */
+    color: #c5ecfd;
+  }
+
+  .btn {
+      background: #39b7dd;
+      text-align: center;
+      padding: 15px;
+      border-radius: 5px;
+      color: #fff;
+      cursor: pointer;
+      text-transform: uppercase;
+      width: 40%;
+  }
+
+.display{
+    height: 450px;
+    width: 800px;
+    border: 1px solid #fff;
+    position: absolute;
+    right: 15%;
+    top: 15%;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    display: flex;
+    background: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.slidershow{
+    width: 800px;
+    height: 450px;
+    overflow: hidden;
+
+}
+
+.navigation{
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+  }
+  .bar{
+    width: 50px;
+    height: 10px;
+    border: 2px solid #fff;
+    margin: 6px;
+    cursor: pointer;
+    transition: 0.4s;
+  }
+  .bar:hover{
+    background: #fff;
+  }
+
+  input[name="r"]{
+      position: absolute;
+      visibility: hidden;
+  }
+
+  .slides{
+    width: 500%;
+    height: 100%;
+    display: flex;
+    animation: slide 12s infinite;
+
+  }
+
+  .slide{
+    width: 20%;
+    transition: 0.6s;
+  }
+  .slide img{
+    width: 100%;
+    height: 100%;
+  }
+
+  #r1:checked ~ .s1{
+    margin-left: 0;
+  }
+  #r2:checked ~ .s1{
+    margin-left: -20%;
+  }
+  #r3:checked ~ .s1{
+    margin-left: -40%;
+  }
+  #r4:checked ~ .s1{
+    margin-left: -60%;
+  }
+  #r5:checked ~ .s1{
+    margin-left: -80%;
+  }
+
+
+  .ring {
+    position: absolute;
+		top: 50%;
+		left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+    background: transparent;
+    border: 3px solid #3c3c3c;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 400px;
+    font-family: sans-serif;
+    font-size: 50px;
+    color: #fff000;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px #fff000;
+    box-shadow: 0 0 20px rgba(0,0,0,.5);
+  }
+  .ring:before {
+    content: '';
+    position: absolute;
+    top:-3px;
+    left:-3px;
+    width: 100%;
+    height: 100%;
+    border: 3px solid transparent;
+    border-top:3px solid #fff000;
+    border-right:3px solid #fff000;
+    border-radius: 50%;
+    animation: animateCircle 2s linear infinite;
+
+  }
+  .ringer{
+    display: block;
+    position: absolute;
+    /*top: calc(50% -2px);*/
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    height: 4px;
+    background: transparent;
+    transform-origin: left;
+    animation: animated 2s linear infinite;
+  }
+  .ringer:before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #fff000;
+    top: -6px;
+    right: -8px;
+    box-shadow: 0 0 20px #fff000;
+  }
+  @keyframes animated {
+    0%{
+      transform: rotate(45deg);
+    }
+    100%{
+      transform: rotate(405deg);
+    }
+  }
+  @keyframes animateCircle {
+    0%{
+      transform: rotate(0deg);
+    }
+    100%{
+      transform: rotate(360deg);
+    }
+  }
+
+.board{
+    height: 73%;
+    width: 80%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding: 15px;
+    background: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+
+}
+
+.tab{
+    width: 100%;
+    height: 100%;
+}
+
+.pos{
+    position: fixed;
+    top: 90%;
+    background: white;
+    text-align: center;
+    padding: 15px;
+    border-radius: 5px;
+    color: black;
+    cursor: pointer;
+    text-transform: uppercase;
+    width: 40%;
+    font-size: 20px;
+    text-shadow: 0 0 10px #fff000;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.bots{
+    width: 80%;
+    top: 90%;
+    left: 9%;
+    position: fixed;
+    padding: 15px;
+    background: rgba(0,0,0,0.9);
+    display: inline;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    border: 1px solid #fff;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.run{
+    width: 50%;
+    background-color: rgba(77, 5, 232, 0.9);
+    border-radius: 5px;
+    float: left;
+    display: inline;
+    color: white;
+    text-align: center;
+    margin-right: 3%;
+}
+
+.download{
+    width: 47%;
+    background-color: rgba(30, 130, 76, 0.9);
+    border-radius: 5px;
+    float: left;
+    display: inline;
+    color: white;
+    text-align: center;
+
+}
