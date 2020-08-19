@@ -343,3 +343,98 @@ form{
     text-align: center;
 
 }
+
+.about-main {
+    width: 70%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    display: inline;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  text-align: center;
+  font-family: arial;
+  float: left;
+  display: inline;
+  background: rgba(255,255,255,255.9);
+}
+.emeka
+{
+  margin:0;
+  padding:0;
+  font-size:20px;
+  line-height:15px;
+}
+.emeka-job {
+  color: grey;
+  font-size: 15px;
+  margin:0;
+  padding:0;
+  line-height:30px;
+}
+
+.about{
+    float: left;
+    display: inline;
+    padding: 15px;
+    width:60%;
+    background: rgba(0,0,0,0.9);
+
+    border: 1px solid #fff;
+    border-radius: 5px;
+    color: white;
+    font-size:20px;
+    text-align: justify;
+    text-justify: inter-word;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.demo{
+    float: left;
+    font-size:30px;
+    background: #39b7dd;
+    border-radius: 5px;
+    display: inline;
+    color: white;
+    text-align: center;
+    width: 15%;
+    cursor: pointer;
+    line-height: 80px;
+    height: 80px;
+    border: 1px solid #fff;
+    justify-content: center;
+    align-items: center;
+}
+
+.error-form{
+            background-color: rgb(243, 21, 21); color: white; position: fixed; top:75%; width: 50%; left: 25%; border-radius: 5px; padding: 5px; text-align: center; border: 1px solid #fff;
+}
+
+.api{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    display: inline;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding: 15px;
+    width:60%;
+    background: rgba(0,0,0,0.9);
+    border: 1px solid #fff;
+    border-radius: 5px;
+    color: white;
+    font-size:20px;
+    text-align: justify;
+    text-justify: inter-word;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+span{
+    background: white;
+    color: black;
+}
