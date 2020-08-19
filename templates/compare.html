@@ -12,14 +12,12 @@
     <header>
         <div class='main'>
             <div class='logo'>
-                <img src="{{ url_for('static', filename='logo.png') }}">
+                <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='logo.png') }}"></a>
             </div>
             <ul>
-                <li class="active"><a href='#'>Home</a></li>
-                <li><a href='#'>Services</a></li>
-                <li><a href='#'>Gallery</a></li>
-                <li><a href='#'>About</a></li>
-                <li><a href='#'>Contact</a></li>
+                <li class="active"><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('app_api') }}">API</a></li>
             </ul>
         </div>
 
@@ -31,7 +29,7 @@
 
     </header>
     <script type="text/javascript" src="{{ url_for('static', filename=code) }}"></script>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="{{ url_for('static', filename='compare.js') }}"></script>
 
 </body>
 </html>

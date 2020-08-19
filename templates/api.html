@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <title>Compare</title>
+    <script src='https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js'></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+<body>
+    <header>
+        <div class='main'>
+            <div class='logo'>
+                <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='logo.png') }}"></a>
+            </div>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li class="active"><a href='#'>API</a></li>
+            </ul>
+        </div>
+
+
+        <div class='api'>
+            <h1>API Documentation</h1>
+            <p>* Use the API Feature to make automated requests for comparisons</p>
+            <p>* A post request should be sent to the endpoint <span>/api</span></p>
+            <p>* The Post request should contain the necessary parameters in a json format</p>
+            <p>* The parameters include <span>no_of_contents</span>, <span>no_of_request</span>, <span>zipf</span>, <span>cache_sizes</span></p>
+            <p>* An example using python is shown below</p>
+            <br>
+            <h2>Python Example</h2>
+            <div style="background: white;">
+            <pre class="prettyprint">
+import requests
+import json
+
+url = 'http://127.0.0.1:5000/'
+
+
+def post_data(data, endpoint=''):
+    response = requests.post(url + endpoint, json=data)
+    data = json.loads(response.content)
+    return data
+
+
+req = {'no_of_requests': 50, 'no_of_contents':20, 'cache_sizes': [5,7], 'zipf':1.2}
+print(post_data(data=req, endpoint='api'))
+            </pre>
+            </div>
+            <br>
+            <h2>Result</h2>
+            <div style="background: white; overflow: auto;">
+            <pre class="prettyprint">[{"labels": ["OPR", "LFU", "LRU", "LFRU", "FIFO", "LFHH", "FBR", "MQ", "PCR"], "dataset": [32, 12, 12, 12, 15, 12, 12.5, 15.0, 10.0], "title": "Cache Size 3"}, {"labels": ["OPR", "LFU", "LRU", "LFRU", "FIFO", "LFHH", "FBR", "MQ", "PCR"], "dataset": [45, 15, 25, 28, 20, 28, 25.0, 22.5, 30.0], "title": "Cache Size 5"}, {"requests": [14, 16, 9, 2, 19, 2, 15, 17, 19, 2, 8, 6, 10, 2, 5, 14, 4, 3, 10, 10, 13, 16, 3, 18, 12, 8, 5, 4, 8, 17, 4, 15, 2, 3, 9, 4, 5, 9, 8, 7]}]
+            </pre>
+            </div>
+        </div>
+
+
+    </header>
+
+
+</body>
+</html>

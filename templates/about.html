@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <title>Compare</title>
+    <script src='https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js'></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <header>
+        <div class='main'>
+            <div class='logo'>
+                <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='logo.png') }}"></a>
+            </div>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li class="active"><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('app_api') }}">API</a></li>
+            </ul>
+        </div>
+
+        <div class="about-main">
+            <div class="card">
+              <img src="{{ url_for('static', filename='01.png') }}" alt="Emeka" style="width:100%">
+              <p class='emeka'>Emeka Ugwuanyi</p>
+              <p class='emeka-job'>Researcher, Lecturer and Developer</p>
+              <div style="margin: 5px 0;">
+                <a href="#"><i class="fa fa-github"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="https://www.linkedin.com/in/emeka-ugwuanyi-259089121/"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-youtube"></i></a>
+              </div>
+            </div>
+            <div class='about'>
+                <p>This application has been developed by Emeka Ugwuanyi, In contribution to his work on Caching in Multi-Access Edge Computing.
+                The purpose of the application is to provide an interface that can be used to compare already existing caching algorithms.</p>
+                <br>
+                <p>This will primarily help researchers by saving time used on implementation of existing algorithms. Therefore, researchers can focus on design and development
+                of their proposed algorithms and then use this interface to verify the benefits of the proposed scheme.</p>
+                <br>
+                <p>The caching algorithms available for comparison in the application include Least Frequently Used (LFU), Least Recently Used (LRU), First In First Out (FIFO),
+                Least Frequently Recently Used (LFRU), Multi Queue (MQ), Frequency Based Replacement(FBR) and Optimal Page Replacement (OPR).</p>
+                <br>
+                <p>To use the application, specify the parameters as wanted. The comparison is made across cache sizes specified in an array format. A downloadable json file is available after each run.</p>
+                <br>
+                <p>API Support is currently under development and would be made available as soon as possible.</p>
+            </div>
+            <a href="https://youtu.be/vnniaE1y17Q" target="_blank"><div class="demo">VIEW DEMO</div></a>
+        </div>
+
+    </header>
+
+
+</body>
+</html>
