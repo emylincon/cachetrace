@@ -10,14 +10,13 @@ function getrows(size, amt){
     for (k=0;k<no;k++){
         table += '<tr style="width:100%">';
             for (j=start;j<amt+stop;j++){
-                table += `<td style="width: ${w}%; height: ${h}%; border: 1px solid white;"><canvas id="myChart${j}" width="90%" height="80%"></canvas></td>`;
+                table += `<td style="width: ${w}%; height: ${h}%; border: 1px solid white;"><canvas id="myChart${j}" width="90%" height="70%"></canvas></td>`;
                 charts.unshift(`myChart${j}`);
             }
         start += amt; stop += amt;
         table += '</tr>';
     }
     table += '</table>';
-    console.log('before -> '+ table);
     return [table, charts]
 }
 
@@ -40,7 +39,6 @@ function createTable(size){
     else if (size%7==0){
         [table, charts] = getrows(size, 4);
     }
-    console.log(table);
     goat.innerHTML = table;
     return charts;
 }
@@ -48,6 +46,7 @@ function createTable(size){
 function drawChart(mchart, title, labs, mydata){
 
     var ctx = document.getElementById(mchart).getContext('2d');
+    Chart.defaults.global.defaultFontSize = 15;
     var bgc = [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -77,7 +76,7 @@ function drawChart(mchart, title, labs, mydata){
         data: {
             labels: labs,
             datasets: [{
-                label: title,
+                label: 'Hit Ratio',
                 data: mydata,
                 backgroundColor: bgc.slice(0, labs.length),
                 borderColor: bc.slice(0, labs.length),
@@ -91,6 +90,17 @@ function drawChart(mchart, title, labs, mydata){
                         beginAtZero: true
                     }
                 }]
+            },
+            title: {
+                    fontSize: 20,
+                    text: title,
+                    display: true,
+                    fontStyle: 'bold'
+                },
+            legend:{
+                labels:{
+                    fontSize: 15,
+                }
             }
         }
     });
@@ -102,7 +112,6 @@ function display_result(){
     let t;
     while (l>0){
         t = l-1;
-        console.log(chts[t]);
         drawChart(chts[t], result[t].title, result[t].labels, result[t].dataset);  //(mchart, title, labs, data)
         l--;
     }
