@@ -21,19 +21,22 @@
             </ul>
         </div>
         <div class='error' ></div>
-        <div class='wrapper'>
-            <form id='form' onsubmit="return validate()" action='/compare' method="GET">
-                <div class="input-fields">
-                    <input type='text' class="input" id='zipf' name='zipf' value='' placeholder="Zipf e.g 1.1" required>
-                    <input type='text' class="input" id='noc' name='noc' value='' placeholder="No of Content e.g 20" required>
-                    <input type='text' class="input" id='nor' name='nor' value='' placeholder="No of Requests e.g 100" required>
-                    <input type='text' class="input" id='csize' name='csize' value='' placeholder="Cache Sizes e.g [5,7]" required>
-                </div>
-                <input class="btn" type='submit' value='RUN'>
-            </form>
-        </div>
-        <div class='display'>
-          <img name='slider' class='slide-node' width='100%' height='100%'>
+        <div class="home">
+            <div class='display'>
+              <img name='slider' class='slide-node'>
+            </div>
+            <div class='wrapper'>
+                <form id='form' onsubmit="return validate()" action='/compare' method="GET">
+                    <div class="input-fields">
+                        <input type='text' class="input" id='zipf' name='zipf' value='' placeholder="Zipf e.g 1.1" required>
+                        <input type='text' class="input" id='noc' name='noc' value='' placeholder="No of Content e.g 20" required>
+                        <input type='text' class="input" id='nor' name='nor' value='' placeholder="No of Requests e.g 100" required>
+                        <input type='text' class="input" id='csize' name='csize' value='' placeholder="Cache Sizes e.g [5,7]" required>
+                    </div>
+                    <input class="btn" type='submit' value='RUN'>
+                </form>
+            </div>
+
         </div>
     </header>
 
