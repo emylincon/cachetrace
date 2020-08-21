@@ -53,17 +53,15 @@ ul li.active a{
 }
 
 .wrapper{
-    height: 300px;
-    width: 500px;
+    height: auto;
+    width: 26%;
     border: 1px solid #fff;
-    position: absolute;
     background: rgba(0,0,0,0.8);
-    left: 10%;
-    top: 15%;
+    float: left;
     padding: 30px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    display: flex;
+
 }
 
 form{
@@ -112,24 +110,75 @@ form{
   }
 
 .display{
-    height: 450px;
-    width: 800px;
+    height: auto;
+    width: 55%;
     border: 1px solid #fff;
-    position: absolute;
-    right: 15%;
-    top: 15%;
     padding: 30px;
+    float: left;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    display: flex;
     background: rgba(0,0,0,0.8);
     justify-content: center;
     align-items: center;
+    margin-right: 1%;
+}
+
+.home{
+  width: 90%;
+  height: 65%;
+  position: fixed;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  padding: 15px;
+}
+
+@media screen and (max-width:1300px){
+  .input-fields .input{
+      font-size: 10px;
+  }
+  .error{
+    width: 60%;
+    left: 20%;
+  }
+}
+@media screen and (max-width:900px){
+  .wrapper{
+      height: 35%;
+      width: 91%;
+  }
+  .display{
+    height: 43%;
+    width: auto;
+  }
+  .input{
+    height: 6px;
+  }
+  .btn{
+    height: 10px;
+    text-align: center;
+    line-height: 5px;
+  }
+  .input-fields .input{
+    font-size: 13px;
+  }
+  .error{
+    width: 80%;
+    left: 10%;
+    font-size: 13px;
+  }
+}
+
+.slide-node{
+  height: 100%;
+  width: 100%;
 }
 
 .slidershow{
-    width: 800px;
-    height: 450px;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
 
 }
@@ -156,39 +205,6 @@ form{
   input[name="r"]{
       position: absolute;
       visibility: hidden;
-  }
-
-  .slides{
-    width: 500%;
-    height: 100%;
-    display: flex;
-    animation: slide 12s infinite;
-
-  }
-
-  .slide{
-    width: 20%;
-    transition: 0.6s;
-  }
-  .slide img{
-    width: 100%;
-    height: 100%;
-  }
-
-  #r1:checked ~ .s1{
-    margin-left: 0;
-  }
-  #r2:checked ~ .s1{
-    margin-left: -20%;
-  }
-  #r3:checked ~ .s1{
-    margin-left: -40%;
-  }
-  #r4:checked ~ .s1{
-    margin-left: -60%;
-  }
-  #r5:checked ~ .s1{
-    margin-left: -80%;
   }
 
 
@@ -348,18 +364,19 @@ form{
 
 .about-main {
     width: 70%;
+    height: 70%;
     position: fixed;
     top: 50%;
     left: 50%;
-    display: inline;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+    display: inline;
 
 }
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
+  max-width: 30%;
   text-align: center;
   font-family: arial;
   float: left;
@@ -386,8 +403,9 @@ form{
     display: inline;
     padding: 15px;
     width:60%;
+    height: 80%;
     background: rgba(0,0,0,0.9);
-
+    overflow: auto;
     border: 1px solid #fff;
     border-radius: 5px;
     color: white;
@@ -399,13 +417,13 @@ form{
 
 .demo{
     float: left;
-    font-size:30px;
+    font-size:20px;
     background: #39b7dd;
     border-radius: 5px;
     display: inline;
     color: white;
     text-align: center;
-    width: 15%;
+    width: 10%;
     cursor: pointer;
     line-height: 80px;
     height: 80px;
@@ -413,9 +431,59 @@ form{
     justify-content: center;
     align-items: center;
 }
+.demo:hover{
+    background: white;
+    color: #39b7dd;
+    border: 1px solid #39b7dd;
+}
+
+@media screen and (max-width:1423px){
+    .demo{
+        width: 9%;
+    }
+    .about{
+        width:50%;
+        font-size: 18px;
+    }
+}
+@media screen and (max-width:1000px){
+    .demo{
+        height: 50px;
+        line-height: 50px;
+        font-size: 12px;
+        width: 9%;
+    }
+    .about{
+        width: 50%;
+        font-size: 13px;
+    }
+    .emeka{
+          font-size:10px;
+    }
+    .emeka-job {
+          font-size: 10px;
+    }
+    .about-main{
+        width: 80%;
+    }
+}
+
+
+@media screen and (max-width:600px){
+    .demo{
+        font-size: 10px;
+        height: 40px;
+        line-height: 40px;
+    }
+    .about-main{
+        width: 85%;
+    }
+}
+
+
 
 .error-form{
-            background-color: rgb(243, 21, 21); color: white; position: fixed; top:75%; width: 50%; left: 25%; border-radius: 5px; padding: 5px; text-align: center; border: 1px solid #fff;
+            background-color: rgb(243, 21, 21); color: white; position: fixed; top:85%; width: 50%; left: 25%; border-radius: 5px; padding: 5px; text-align: center; border: 1px solid #fff;
 }
 
 .api{
@@ -427,6 +495,8 @@ form{
     transform: translate(-50%, -50%);
     padding: 15px;
     width:60%;
+    height: 78%;
+    overflow: auto;
     background: rgba(0,0,0,0.9);
     border: 1px solid #fff;
     border-radius: 5px;
@@ -436,6 +506,23 @@ form{
     text-justify: inter-word;
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
+
+@media screen and (max-width:1253px){
+    .api{
+        font-size: 15px;
+        height: 70%;
+        width: 70%;
+    }
+}
+
+@media screen and (max-width:808px){
+    .api{
+        font-size: 14px;
+        height: 63%;
+        width: 90%;
+    }
+}
+
 span{
     background: white;
     color: black;
