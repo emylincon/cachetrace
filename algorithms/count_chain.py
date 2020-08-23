@@ -228,7 +228,7 @@ class CountChain:      # replace and maintain count and maintain boundary
             # print('end: ', self.details_display())
             # print('b', self.total_count, self.average_count)
             self.total_count = math.ceil(self.total_count / 2)
-            print('bounded->')
+            # print('bounded->')
             # print('a', self.total_count, self.average_count)
 
     def find_match(self, count, old, new, boundary, new_node):

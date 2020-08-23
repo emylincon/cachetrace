@@ -9,6 +9,7 @@ import concurrent.futures
 import time
 import json
 import os
+import pandas as pd
 
 fig = plt.figure()
 
@@ -300,45 +301,55 @@ def save_json(filename, data):
 def clean_up():
     duration = 30*60    # seconds
     files = os.listdir('static/')
-    files.remove('cache_trace')
     now = int(time.time())
     for file in files:
-        fil, ex = file.split('.')
-        if (ex == 'json') and ((now - int(fil)) > duration):
-            os.remove(f'static/{fil}.json')
-            os.remove(f'static/{fil}.js')
+        if '.' in file:
+            fil, ex = file.split('.')
+            if (ex == 'json') and ((now - int(fil)) > duration):
+                os.remove(f'static/{fil}.json')
+                os.remove(f'static/{fil}.js')
 
 
-def plot_comparison(no_of_requests, no_of_contents, cache_sizes, zipf):
-    ref = zipf_dist(no_of_requests, no_of_contents, zipf)
-    c_sizes = cache_sizes[:]
-    axs, label = get_figs(len(cache_sizes))
-    l_lab = [axs[i] for i in label]
-    color = ['r', 'b', 'g', 'm', 'c', 'brown', 'k', 'lime', 'orange']
-    js_data = []
-    algos = {'OPR': opr, 'LFU': lfu, 'LRU': lru, 'LFRU': lfru, 'FIFO': fifo, 'LFHH': improved_cache, 'FBR': fbr, 'MQ': mq,
-             'PCR': imp}
-    for i in range(len(axs)):
-        ax = axs[i]
-        data = {}
-        cache_size = c_sizes[i]
-        with concurrent.futures.ThreadPoolExecutor() as executor:
+def plot_comparison(no_of_requests, no_of_contents, cache_sizes, zipf, file=None):
+    try:
+        if zipf:
+            ref = zipf_dist(no_of_requests, no_of_contents, zipf)
+        else:
+            try:
+                file_rd = pd.read_csv(file)
+                ref = list(file_rd['requests'].values)[:no_of_requests]
+            except Exception as e:
+                return None, e
+        c_sizes = cache_sizes[:]
+        axs, label = get_figs(len(cache_sizes))
 
-            results = {executor.submit(algos[func], ref, cache_size): func for func in algos}
+        js_data = []
+        algos = {'OPR': opr, 'LFU': lfu, 'LRU': lru, 'LFRU': lfru, 'FIFO': fifo, 'LFHH': improved_cache, 'FBR': fbr, 'MQ': mq,
+                 'PCR': imp}
+        for i in range(len(axs)):
+            ax = axs[i]
+            data = {}
+            cache_size = c_sizes[i]
+            with concurrent.futures.ThreadPoolExecutor() as executor:
 
-        for f in results:
-            # print(f.result(), results[f])
-            data[results[f]] = f.result()
-        js_data.append({'labels': list(data.keys()), 'dataset': list(data.values()), 'title': f'Cache Size {cache_size}'})
-        # plot_me(data, ax, color, cache_size, l_lab)
-    name = f'{int(time.time())}'
-    save_data(name, js_data)
-    js_data.append({'requests': eval(str(ref))})
-    save_json(name, js_data)
-    clean_up()
-    # plt.savefig(rf'static/{filename}')
-    # plt.close()
-    return f"{name}.js", f"{name}.json"
+                results = {executor.submit(algos[func], ref, cache_size): func for func in algos}
+
+            for f in results:
+
+                data[results[f]] = f.result()
+            js_data.append({'labels': list(data.keys()), 'dataset': list(data.values()), 'title': f'Cache Size {cache_size}'})
+
+        name = f'{int(time.time())}'
+        save_data(name, js_data)
+        js_data.append({'requests': eval(str(ref))})
+        save_json(name, js_data)
+        clean_up()
+        if file:
+            os.remove(file)
+
+        return f"{name}.js", f"{name}.json"
+    except Exception as e:
+        return None, e
 
 
 #plot_comparison(no_of_requests=50, no_of_contents=20, cache_sizes=[3,5,6,7,8,9], zipf=1.1)

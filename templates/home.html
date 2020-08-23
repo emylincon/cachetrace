@@ -7,6 +7,8 @@
     <title>CacheTest</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='logo.ico') }}"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel="stylesheet">
+
 </head>
 <body>
     <header>
@@ -20,20 +22,38 @@
                 <li><a href="{{ url_for('app_api') }}">API</a></li>
             </ul>
         </div>
-        <div class='error' ></div>
+        <div id='bart' data-label='Loading...'></div>
+        <div class='error' >
+            {% if error %}
+            <h1>Error Occurred</h1>
+            <p class="err-p">{{error}}</p>
+            <p>Please also adhere that you have a column named <b>'requests'</b> in your csv</p>
+            {% endif %}
+        </div>
         <div class="home">
             <div class='display'>
               <img name='slider' class='slide-node'>
             </div>
             <div class='wrapper'>
-                <form id='form' onsubmit="return validate()" action='/compare' method="GET">
+                <form id='form' onsubmit="return validate()" action='/compare' method="POST" enctype='multipart/form-data'>
                     <div class="input-fields">
                         <input type='text' class="input" id='zipf' name='zipf' value='' placeholder="Zipf e.g 1.1" required>
                         <input type='text' class="input" id='noc' name='noc' value='' placeholder="No of Content e.g 20" required>
                         <input type='text' class="input" id='nor' name='nor' value='' placeholder="No of Requests e.g 100" required>
                         <input type='text' class="input" id='csize' name='csize' value='' placeholder="Cache Sizes e.g [5,7]" required>
                     </div>
-                    <input class="btn" type='submit' value='RUN'>
+                    <!--<input class="btn" type='submit' value='RUN'>-->
+                    <div class='buttons'>
+                        <!--<div class="run">RUN</div>-->
+                        <input class="run" type='submit' value='RUN'>
+                        <div class="switcher">
+                            <div class="toggle">
+                                <input onclick="change_form()" type="checkbox">
+                                <label for="" class="onbtn">Off</label>
+                                <label for="" class="ofbtn">On</label>
+                              </div>
+                        </div>
+                    </div>
                 </form>
             </div>
 

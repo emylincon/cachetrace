@@ -2,6 +2,9 @@ from flask import Flask, render_template, session, url_for, request, jsonify
 from worker import plot_comparison
 import json
 import ast
+from werkzeug.utils import secure_filename
+import time
+
 
 app = Flask(__name__)
 app.secret_key = 'hello'
@@ -36,13 +39,29 @@ def app_api():
     return render_template('api.html', codes=session.keys())
 
 
-@app.route('/compare')
+@app.route('/compare', methods=['POST', 'GET'])
 def compare():
-    req_var = dict(request.args)   # {'zipf': '1.1', 'noc': '20', 'nor': '50', 'csize': '[3,5]'}
-    # print(ast.literal_eval(req_var['csize']), req_var)
-    result, name = plot_comparison(no_of_requests=int(req_var['nor']), no_of_contents=int(req_var['noc']),
-                                   cache_sizes=ast.literal_eval(req_var['csize']), zipf=float(req_var['zipf']))
-    return render_template('compare.html', code=result, name=name)
+    if request.method == 'POST':
+        req_var = dict(request.form)   # {'zipf': '1.1', 'noc': '20', 'nor': '50', 'csize': '[3,5]'}
+        # print(ast.literal_eval(req_var['csize']), req_var)
+        if 'zipf' in req_var:
+            result, name = plot_comparison(no_of_requests=int(req_var['nor']), no_of_contents=int(req_var['noc']),
+                                           cache_sizes=ast.literal_eval(req_var['csize']), zipf=float(req_var['zipf']))
+            if not result:
+                return render_template('home.html', error=f'Please contact admin: {name}')
+        else:
+            sent_file = request.files['file']
+            full_name = f"{int(time.time())}" + secure_filename(sent_file.filename)
+            sent_file.save(f'static/temp/{full_name}')
+            result, name = plot_comparison(no_of_requests=int(req_var['nor']), no_of_contents=None,
+                                           file=f'static/temp/{full_name}',
+                                           cache_sizes=ast.literal_eval(req_var['csize']), zipf=None)
+            if not result:
+                return render_template('home.html', error=name)
+
+        return render_template('compare.html', code=result, name=name)
+    else:
+        return home()
 
 
 if __name__ == '__main__':
