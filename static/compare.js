@@ -24,7 +24,10 @@ function createTable(size){
     var goat = document.querySelector('.board');
     var table;
     var charts;
-    if(size<5){
+    if (window.innerWidth < 950){
+        [table, charts] = getrows(size, 1);
+    }
+    else if(size<5){
         [table, charts] = getrows(size, size);
     }
     else if (size%5==0){
