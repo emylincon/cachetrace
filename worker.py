@@ -324,8 +324,8 @@ def plot_comparison(no_of_requests, no_of_contents, cache_sizes, zipf, file=None
         axs, label = get_figs(len(cache_sizes))
 
         js_data = []
-        algos = {'OPR': opr, 'LFU': lfu, 'LRU': lru, 'LFRU': lfru, 'FIFO': fifo, 'LFHH': improved_cache, 'FBR': fbr, 'MQ': mq,
-                 'PCR': imp}
+        algos = {'OPR': opr, 'LFU': lfu, 'LRU': lru, 'LFRU': lfru, 'FIFO': fifo, 'SHLFRU1': improved_cache, 'FBR': fbr, 'MQ': mq,
+                 'SHLFRU2': imp}
         for i in range(len(axs)):
             ax = axs[i]
             data = {}

@@ -92,6 +92,13 @@ function drawChart(mchart, title, labs, mydata){
                     ticks: {
                         beginAtZero: true
                     }
+                }],
+                xAxes: [{
+                  ticks: {
+                        autoSkip: false,
+                        maxRotation: 45,
+                        minRotation: 45
+                    }
                 }]
             },
             title: {
