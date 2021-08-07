@@ -1,6 +1,3 @@
-import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
 import numpy as np
 from algorithms.count_chain import CountChain
 from algorithms.mq import MQ
@@ -11,21 +8,18 @@ import json
 import os
 import pandas as pd
 
-fig = plt.figure()
-
 
 def get_figs(length):
-    figs = lambda no: [fig.add_subplot(int(length / no), no, i + 1) for i in range(length)]
     if length <= 4:
-        return figs(length), list(range(0,length, length))
+        return length, list(range(0,length, length))
     elif length % 7 == 0:
-        return figs(7), list(range(0,length, 7))
+        return 7, list(range(0,length, 7))
     elif length % 5 == 0:
-        return figs(5), list(range(0,length, 5))
+        return 5, list(range(0,length, 5))
     elif length % 4 == 0:
-        return figs(8), list(range(0,length, 4))
+        return 8, list(range(0,length, 4))
     elif length % 3 == 0:
-        return figs(3), list(range(0,length, 3))
+        return 3, list(range(0,length, 3))
 
 
 def hit_ratio(hit, length):
@@ -260,22 +254,6 @@ def imp(ref, cache_size):
     return my_cache.hit_ratio()
 
 
-def plot_me(data, ax, cols, cache_size, l_label):
-    width = 0.20
-    ind = range(len(data))
-    ax.bar(ind, list(data.values()), width, color=cols, alpha=0.4)
-    ax.set_xticks(ind)
-    ax.set_xticklabels([i.upper() for i in data], rotation=45, fontsize=10)
-    if ax in l_label:
-        ax.set_ylabel("Hit Ratio", fontsize=15)
-    j = 0
-    for i in data:
-        ax.text(j, data[i], f'{data[i]}%', rotation=0,
-                ha="center", va="center", bbox=dict(boxstyle="round", ec=(0., 0., 0.), fc=(0.7, 0.9, 1.), ))
-        j+=1
-    ax.set_title(f'Comparision with {cache_size} cache size')
-
-
 def zipf_dist(length, maximum, z=1.20):  # length = length of array, maximum = max number in array
     raw_list = np.random.zipf(z, size=length)
     formated_list = [i % maximum for i in raw_list]
@@ -321,13 +299,12 @@ def plot_comparison(no_of_requests, no_of_contents, cache_sizes, zipf, file=None
             except Exception as e:
                 return None, e
         c_sizes = cache_sizes[:]
-        axs, label = get_figs(len(cache_sizes))
+        amt, label = get_figs(len(cache_sizes))
 
         js_data = []
         algos = {'OPR': opr, 'LFU': lfu, 'LRU': lru, 'LFRU': lfru, 'FIFO': fifo, 'SHLFRU1': improved_cache, 'FBR': fbr, 'MQ': mq,
                  'SHLFRU2': imp}
-        for i in range(len(axs)):
-            ax = axs[i]
+        for i in range(amt):
             data = {}
             cache_size = c_sizes[i]
             with concurrent.futures.ThreadPoolExecutor() as executor:
@@ -352,4 +329,6 @@ def plot_comparison(no_of_requests, no_of_contents, cache_sizes, zipf, file=None
         return None, e
 
 
-#plot_comparison(no_of_requests=50, no_of_contents=20, cache_sizes=[3,5,6,7,8,9], zipf=1.1)
+if __name__ == '__main__':
+    ans = plot_comparison(no_of_requests=50, no_of_contents=20, cache_sizes=[3,5,6,7,8,9], zipf=1.1)
+    print(ans)
