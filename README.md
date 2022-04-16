@@ -1,3 +1,11 @@
+<p align="center">
+ <a style="text-decoration:none" href="https://img.shields.io/github/workflow/status/emylincon/cachetrace/cache-trace?style=for-the-badge" target="_blank">
+     <img src="https://img.shields.io/github/workflow/status/emylincon/cachetrace/cache-trace?style=for-the-badge" alt="Build Status" />
+ </a>
+
+</p>
+
+![image](static/logo.png)
 # Cache Trace Application
 * Application is a website to compare cache replacement algorithms
 * backend has been developed using flask and python
