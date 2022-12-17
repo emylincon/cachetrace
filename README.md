@@ -1,6 +1,6 @@
 <p align="center">
- <a style="text-decoration:none" href="https://img.shields.io/github/workflow/status/emylincon/cachetrace/cache-trace?style=for-the-badge" target="_blank">
-     <img src="https://img.shields.io/github/workflow/status/emylincon/cachetrace/cache-trace?style=for-the-badge" alt="Build Status" />
+ <a style="text-decoration:none" href="https://img.shields.io/github/actions/workflow/status/emylincon/cachetrace/python-package.yml?branch=master&style=for-the-badge" target="_blank">
+     <img src="https://img.shields.io/github/actions/workflow/status/emylincon/cachetrace/python-package.yml?branch=master&style=for-the-badge" alt="Build Status" />
  </a>
 
 </p>
